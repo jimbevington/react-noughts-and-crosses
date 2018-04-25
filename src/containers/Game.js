@@ -11,12 +11,14 @@ class Game extends React.Component {
     }
   }
 
-
+  takeTurn(){
+    console.log('cell clicked');
+  }
 
   render(){
     return (
       <div className='game-container'>
-        <Board cellData={this.state.cells}/>
+        <Board cellData={this.state.cells} handleCellClick={this.takeTurn}/>
       </div>
     )
   }
