@@ -1,0 +1,74 @@
+Game
+  Board
+    Row
+      Cell
+      Cell
+      Cell
+    Row
+      Cell
+      Cell
+      Cell
+    Row
+      Cell
+      Cell
+      Cell
+  PlayersKey
+  NewGame
+
+
+Game
+  properties: Players [X, O]
+  State: won? - boolean
+         currentPlayer = players[i]
+         cells = {0: null, etc}
+
+  functions:
+    takeTurn(cellValue) -
+      fillCell(cellValue)
+      checkWinner()
+      checkWon()
+
+    fillCell(cellValue)
+      this.cells[cellValue] = this.currentPlayer
+
+    checkWinner(){
+      const rows = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+      ]
+
+      for (let row of rows){
+        (if row[0] !== null && row[0] === row[1] && row[0] === row[2]){
+          this.won = true;
+          return;
+        }
+      }
+    }
+
+    changePlayer
+      if player == players[0]{
+        currentPlayer = player[1]
+      } else {
+        currentPlayer = player[0]
+      }
+      updatePlayerDisplay
+
+    checkWon(){
+      if(this.won?){
+        print Winner
+        update NewGame Display
+      }
+      this.changePlayer()
+    }
+
+Board
+  cells
+
+Cell
+  Properties: value=i, handleClick = f(takeTurn)
