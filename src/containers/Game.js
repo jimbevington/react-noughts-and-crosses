@@ -1,4 +1,5 @@
 import React from 'react';
+import Board from '../components/Board';
 
 class Game extends React.Component {
   constructor(props){
@@ -6,12 +7,18 @@ class Game extends React.Component {
     this.state = {
       isWon: false,
       currentPlayer: this.props.players[0],
-      cells: {} // initialise with this empty
+      cells: [] // initialise with this empty
     }
   }
 
+
+
   render(){
-    return <h1>This is the Game</h1>
+    return (
+      <div className='game-container'>
+        <Board />
+      </div>
+    )
   }
 }
 
