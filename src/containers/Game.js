@@ -1,6 +1,6 @@
 import React from 'react';
 import Board from '../components/Board';
-import Player from '../components/Player';
+// import Player from '../components/Player';
 
 class Game extends React.Component {
   constructor(props){
@@ -71,17 +71,23 @@ class Game extends React.Component {
     })
   }
 
-  highlightCurrentPlayer(){
-
-  }
-
   render(){
     return (
       <div className='game-container'>
         <Board cellData={this.state.cells} handleCellClick={this.takeTurn}/>
         <div className='player-labels'>
-          <Player player={this.props.players[0]} ref={this.props.players[0]}/>
-          <Player player={this.props.players[1]} ref={this.props.players[1]}/>
+          <h3
+            className='player-name'
+            ref='X'
+          >
+            Player {this.props.players[0]}
+          </h3>
+          <h3
+            className='player-name'
+            ref='O'
+          >
+            Player {this.props.players[1]}
+          </h3>
         </div>
       </div>
     )
