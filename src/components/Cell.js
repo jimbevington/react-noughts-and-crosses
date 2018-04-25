@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Cell = (props) => {
-  return <p>a cell</p>
+  return <p className='cell'>{props.value}</p>
 }
 
 export default Cell;
