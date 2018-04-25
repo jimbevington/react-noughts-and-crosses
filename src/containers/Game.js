@@ -13,11 +13,13 @@ class Game extends React.Component {
   }
 
   takeTurn(event){
-    debugger;
     const currentCell = event.target.id;  // the clicked cell ID
     this.fillCell(currentCell)
-    // checkWinner()
-    this.checkWon()
+    this.checkWinner();
+    // if no one has won, change the Player
+    if(!this.state.isWon){
+      this.changePlayer();
+    }
   }
 
   fillCell(cellID){
@@ -26,12 +28,29 @@ class Game extends React.Component {
     this.setState({cells: updatedCells})
   }
 
-  checkWon(){
-    if(this.state.isWon){
-      console.log('the winner is' + this.state.currentPlayer);
-    } else {
-      this.changePlayer();
+  checkWinner(){
+    const rows = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
+    ]
+
+    const cells = this.state.cells;
+
+    for (let row of rows){
+      if (cells[row[0]] && cells[row[0]] === cells[row[1]] && cells[row[0]] === cells[row[2]]){
+        this.setState({isWon: true}, this.declareWinner());
+      }
     }
+  }
+
+  declareWinner(){
+    console.log('the winner is ' + this.state.currentPlayer);
   }
 
   changePlayer(){
