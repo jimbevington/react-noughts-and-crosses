@@ -28,7 +28,10 @@ const Board = (props) => {
           id='4'
           value={props.cellData[4]}
           handleClick={props.handleCellClick}/>
-        <Cell id='5' value={props.cellData[5]} />
+        <Cell
+          id='5'
+          value={props.cellData[5]}
+          handleClick={props.handleCellClick}/>
       </div>
       <div className='row'>
         <Cell

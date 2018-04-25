@@ -1,5 +1,6 @@
 import React from 'react';
 import Board from '../components/Board';
+import PlayerLabel from '../components/PlayerLabel';
 
 class Game extends React.Component {
   constructor(props){
@@ -13,10 +14,16 @@ class Game extends React.Component {
   }
 
   takeTurn(event){
+    // stop Turn if Game is Won
+    if(this.state.isWon){
+      return;
+    }
+
     const currentCell = event.target.id;  // the clicked cell ID
     this.fillCell(currentCell)
     this.checkWinner();
-    // if no one has won, change the Player
+
+    // change Player if Game not won
     if(!this.state.isWon){
       this.changePlayer();
     }
@@ -67,7 +74,7 @@ class Game extends React.Component {
     return (
       <div className='game-container'>
         <Board cellData={this.state.cells} handleCellClick={this.takeTurn}/>
-
+        <PlayerLabel currentPlayer={this.state.currentPlayer}/>
       </div>
     )
   }
