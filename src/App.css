@@ -44,3 +44,26 @@ body {
   border-radius: 50px;
   border: outset lightgrey 2px;
 }
+
+.hidden {
+  visibility: hidden;
+}
+
+.winnerVisible {
+  position: absolute;
+  z-index: 1;
+  top: 250px;
+  margin:auto;
+  padding: 50px;
+  width: 450px;
+  height: 250px;
+  text-align: center;
+  border-radius: 150px;
+  font-size: 3.5em;
+  background-color: hotpink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.9;
+  color: chartreuse;
+}

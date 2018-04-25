@@ -8,10 +8,10 @@ class Game extends React.Component {
     this.state = {
       isWon: false,
       currentPlayer: props.players[0],
-      cells: [] // initialise with this empty
+      cells: [], // initialise with this empty
+      displayWinner: 'hidden'
     }
     this.takeTurn = this.takeTurn.bind(this);
-    // this.highlightCurrentPlayer = this.highlightCurrentPlayer.bind(this);
   }
 
   takeTurn(event){
@@ -52,12 +52,13 @@ class Game extends React.Component {
 
     for (let row of rows){
       if (cells[row[0]] && cells[row[0]] === cells[row[1]] && cells[row[0]] === cells[row[2]]){
-        this.setState({isWon: true}, this.declareWinner());
+        this.setState({isWon: true}, this.declareWinner);
       }
     }
   }
 
   declareWinner(){
+    this.setState({displayWinner: 'winnerVisible'});
     console.log('the winner is ' + this.state.currentPlayer);
   }
 
@@ -89,6 +90,8 @@ class Game extends React.Component {
             Player {this.props.players[1]}
           </h3>
         </div>
+        {/* this is not updating as i'd want */}
+        <h1 className={this.state.displayWinner}>The winner is {this.state.currentPlayer}!</h1>
       </div>
     )
   }
