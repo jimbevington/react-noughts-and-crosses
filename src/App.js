@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import Game from './containers/Game';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <h1>Hello World</h1>
+      <Game />
     );
   }
 }
