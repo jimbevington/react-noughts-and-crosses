@@ -1,6 +1,6 @@
 import React from 'react';
 import Board from '../components/Board';
-import PlayerLabel from '../components/PlayerLabel';
+import Player from '../components/Player';
 
 class Game extends React.Component {
   constructor(props){
@@ -11,6 +11,7 @@ class Game extends React.Component {
       cells: [] // initialise with this empty
     }
     this.takeTurn = this.takeTurn.bind(this);
+    // this.highlightCurrentPlayer = this.highlightCurrentPlayer.bind(this);
   }
 
   takeTurn(event){
@@ -70,11 +71,18 @@ class Game extends React.Component {
     })
   }
 
+  highlightCurrentPlayer(){
+
+  }
+
   render(){
     return (
       <div className='game-container'>
         <Board cellData={this.state.cells} handleCellClick={this.takeTurn}/>
-        <PlayerLabel currentPlayer={this.state.currentPlayer}/>
+        <div className='player-labels'>
+          <Player player={this.props.players[0]} ref={this.props.players[0]}/>
+          <Player player={this.props.players[1]} ref={this.props.players[1]}/>
+        </div>
       </div>
     )
   }

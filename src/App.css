@@ -15,14 +15,6 @@ body {
   display:table;
 }
 
-/* .cell {
-  width: 100px;
-  height: 100px;
-  /* margin:0px; */
-
-  /* border: solid 1px black;
-} */
-
 .cell {
   float: left;
   width: 150px;
@@ -37,7 +29,7 @@ body {
   text-align: center;
 }
 
-.player-label {
+.player-labels {
   width: 400px;
   display: flex;
   justify-content: space-evenly;
