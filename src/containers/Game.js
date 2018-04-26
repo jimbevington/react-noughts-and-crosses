@@ -1,6 +1,6 @@
 import React from 'react';
 import Board from '../components/Board';
-// import Player from '../components/Player';
+import Player from '../components/Player';
 
 class Game extends React.Component {
   constructor(props){
@@ -23,11 +23,6 @@ class Game extends React.Component {
     const currentCell = event.target.id;  // the clicked cell ID
     this.fillCell(currentCell)
     this.checkWinner();
-
-    // change Player if Game not won
-    if(!this.state.isWon){
-      this.changePlayer();
-    }
   }
 
   fillCell(cellID){
@@ -48,12 +43,19 @@ class Game extends React.Component {
       [2, 4, 6]
     ]
 
-    const cells = this.state.cells;
+    const cells = this.state.cells;   
+    let won = false   //  local 'won' var to decide if player changes
 
     for (let row of rows){
       if (cells[row[0]] && cells[row[0]] === cells[row[1]] && cells[row[0]] === cells[row[2]]){
+        won = true  // toggle local 'won' to prevent player change
         this.setState({isWon: true}, this.declareWinner);
       }
+    }
+
+    // Change the Player if the Game hasn't been won
+    if (!won){
+      this.changePlayer();
     }
   }
 
@@ -76,20 +78,13 @@ class Game extends React.Component {
     return (
       <div className='game-container'>
         <Board cellData={this.state.cells} handleCellClick={this.takeTurn}/>
+
+        {/* THESE SHOULD HIGHLIGHT BASED ON CURRENT PLAYER */}
         <div className='player-labels'>
-          <h3
-            className='player-name'
-            ref='X'
-          >
-            Player {this.props.players[0]}
-          </h3>
-          <h3
-            className='player-name'
-            ref='O'
-          >
-            Player {this.props.players[1]}
-          </h3>
+          <Player player={this.props.players[0]}/>
+          <Player player={this.props.players[1]}/>
         </div>
+
         {/* this is not updating as i'd want */}
         <h1 className={this.state.displayWinner}>The winner is {this.state.currentPlayer}!</h1>
       </div>
